@@ -1,0 +1,3 @@
+classTweaker	v1	named
+
+transitive-inject-interface	net/minecraft/block/state/BlockState	net/ornithemc/osl/blockstates/impl/block/state/BlockStateExtensionImpl

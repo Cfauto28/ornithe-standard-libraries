@@ -1,0 +1,16 @@
+{
+	"required": true,
+	"minVersion": "0.8",
+	"package": "net.ornithemc.osl.blockstates.impl.mixin",
+	"compatibilityLevel": "JAVA_8",
+	"mixins": [
+		"common.BlockStateMixin"
+	],
+	"client": [
+	],
+	"server": [
+	],
+	"injectors": {
+		"defaultRequire": 1
+	}
+}
