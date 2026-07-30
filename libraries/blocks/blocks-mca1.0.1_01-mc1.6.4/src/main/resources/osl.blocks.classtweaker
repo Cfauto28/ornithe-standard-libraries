@@ -1,14 +1,11 @@
 classTweaker	v1	named
 
-transitive-accessible	method	net/minecraft/block/Block	setSounds	(Lnet/minecraft/block/Block$Sounds;)Lnet/minecraft/block/Block;
-transitive-accessible	method	net/minecraft/block/Block	setOpacity	(I)Lnet/minecraft/block/Block;
-transitive-accessible	method	net/minecraft/block/Block	setLight	(F)Lnet/minecraft/block/Block;
-transitive-accessible	method	net/minecraft/block/Block	setBlastResistance	(F)Lnet/minecraft/block/Block;
-transitive-accessible	method	net/minecraft/block/Block	setStrength	(F)Lnet/minecraft/block/Block;
-transitive-accessible	method	net/minecraft/block/Block	setUnbreakable	()Lnet/minecraft/block/Block;
-transitive-accessible	method	net/minecraft/block/Block	setTicksRandomly	(Z)Lnet/minecraft/block/Block;
-transitive-accessible	method	net/minecraft/block/Block	setKey	(Ljava/lang/String;)Lnet/minecraft/block/Block;
-transitive-accessible	method	net/minecraft/block/Block	setCreativeModeTab	(Lnet/minecraft/item/CreativeModeTab;)Lnet/minecraft/block/Block;
-transitive-accessible	method	net/minecraft/block/Block	setSpriteName	(Ljava/lang/String;)Lnet/minecraft/block/Block;
+transitive-accessible	method	ext/block/ExtBlock	setSounds	(Lnet/minecraft/block/BlockSounds;)Lext/block/ExtBlock;
+transitive-accessible	method	ext/block/ExtBlock	setOpacity	(I)Lext/block/ExtBlock;
+transitive-accessible	method	ext/block/ExtBlock	setLight	(F)Lext/block/ExtBlock;
+transitive-accessible	method	ext/block/ExtBlock	setBlastResistance	(F)Lext/block/ExtBlock;
+transitive-accessible	method	ext/block/ExtBlock	setStrength	(F)Lext/block/ExtBlock;
+transitive-accessible	method	ext/block/ExtBlock	setTicksRandomly	(Z)V
+transitive-accessible	method	ext/block/ExtBlock	setName	(Ljava/lang/String;)Lext/block/ExtBlock;
 
-transitive-inject-interface	net/minecraft/block/Block	net/ornithemc/osl/blocks/impl/block/BlockExtensionImpl
+transitive-inject-interface	ext/block/ExtBlock	net/ornithemc/osl/blocks/impl/block/BlockExtensionImpl

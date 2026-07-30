@@ -2,11 +2,11 @@ package net.ornithemc.osl.blocks.impl.mixin.common;
 
 import org.spongepowered.asm.mixin.Mixin;
 
-import net.minecraft.block.Block;
+import ext.block.ExtBlock;
 
 import net.ornithemc.osl.blocks.api.block.BlockExtension;
 
-@Mixin(Block.class)
+@Mixin(ExtBlock.class)
 public class BlockMixinNew implements BlockExtension {
 
 	@Override
@@ -15,7 +15,7 @@ public class BlockMixinNew implements BlockExtension {
 	}
 
 	@Override
-	public boolean is(Block block) {
-		return ((Block) (Object) this).is(block.id);
+	public boolean is(ExtBlock block) {
+		return ((ExtBlock) (Object) this).is(block);
 	}
 }

@@ -9,7 +9,7 @@
 		"common.BlockMixinNew",
 		"common.BlockMixinOld",
 		"common.RedstoneTorchBlockMixin",
-		"common.RepeaterBlockMixin",
+		//"common.RepeaterBlockMixin",
 		"common.WorldMixin"
 	],
 	"client": [

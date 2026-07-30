@@ -1,3 +1,1 @@
 classTweaker	v1	named
-
-transitive-inject-interface	net/minecraft/client/resource/Identifier	net/ornithemc/osl/core/impl/util/IdentifierImpl

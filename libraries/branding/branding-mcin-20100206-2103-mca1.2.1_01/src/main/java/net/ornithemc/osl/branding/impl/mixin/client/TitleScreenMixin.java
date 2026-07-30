@@ -19,7 +19,7 @@ public class TitleScreenMixin extends Screen {
 		at = @At(
 			value = "INVOKE",
 			ordinal = 0,
-			target = "Lnet/minecraft/client/gui/screen/TitleScreen;drawString(Lnet/minecraft/client/render/TextRenderer;Ljava/lang/String;III)V"
+			target = "Lnet/minecraft/client/gui/GuiElement;drawString(Lnet/minecraft/client/render/TextRenderer;Ljava/lang/String;III)V"
 		)
 	)
 	public void osl$branding$drawVersionString(int mouseX, int mouseY, float tickDelta, CallbackInfo ci) {

@@ -1,4 +1,4 @@
-package net.ornithemc.osl.executors.impl.mixin.server;
+/*package net.ornithemc.osl.executors.impl.mixin.server;
 
 import java.util.ArrayDeque;
 import java.util.Queue;
@@ -6,6 +6,7 @@ import java.util.Queue;
 import org.objectweb.asm.Opcodes;
 
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Pseudo;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.At.Shift;
@@ -17,7 +18,7 @@ import net.minecraft.server.MinecraftServer;
 import net.ornithemc.osl.executors.api.MainThreadExecutor;
 import net.ornithemc.osl.executors.impl.Executors;
 
-@Mixin(MinecraftServer.class)
+@Pseudo @Mixin(MinecraftServer.class)
 public class MinecraftServerMixin implements MainThreadExecutor {
 
 	@Unique
@@ -93,3 +94,4 @@ public class MinecraftServerMixin implements MainThreadExecutor {
 		Executors.shutdownBackgroundExecutor();
 	}
 }
+*/

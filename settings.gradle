@@ -4,14 +4,14 @@ pluginManagement {
 			name = 'Fabric'
 			url = 'https://maven.fabricmc.net/'
 		}
-		maven {
+		/*maven {
 			name = 'Ornithe Releases'
 			url = 'https://maven.ornithemc.net/releases'
 		}
 		maven {
 			name = 'Ornithe Snapshots'
 			url = 'https://maven.ornithemc.net/snapshots'
-		}
+		}*/
 		gradlePluginPortal()
 	}
 }
@@ -20,111 +20,39 @@ rootProject.name = 'osl'
 
 include ':libraries:core'
 include ':libraries:core:core-mca1.0.1_01-mc14w26c'
-include ':libraries:core:core-mc14w27a-mc1.14.4'
 
 include ':libraries:blocks'
 include ':libraries:blocks:blocks-mca1.0.1_01-mc1.6.4'
-include ':libraries:blocks:blocks-mc13w36a-mc14w26c'
-include ':libraries:blocks:blocks-mc14w27a-mc17w46a'
-include ':libraries:blocks:blocks-mc17w47a-mc18w31a'
-include ':libraries:blocks:blocks-mc18w32a-mc1.13.2'
-include ':libraries:blocks:blocks-mc18w43a-mc1.14.4'
 
 include ':libraries:branding'
 include ':libraries:branding:branding-mcin-20100206-2103-mca1.2.1_01'
-include ':libraries:branding:branding-mca1.2.2-mc14w29b'
-include ':libraries:branding:branding-mc14w30a-mc16w05a'
-include ':libraries:branding:branding-mc16w05b-mc1.12.2'
-
-include ':libraries:config'
-include ':libraries:config:config-mcb1.3-mcb1.7.3'
-include ':libraries:config:config-mc1.3-mc1.6.4'
-include ':libraries:config:config-mc13w41a-mc1.7.10'
-include ':libraries:config:config-mc14w04b-mc14w26c'
-include ':libraries:config:config-mc14w27a-mc15w39c'
-include ':libraries:config:config-mc15w40a-mc1.12.2'
-include ':libraries:config:config-mc17w43a-mc1.13.2'
 
 include ':libraries:entrypoints'
 include ':libraries:entrypoints:entrypoints-mcin-20091223-1459-mc1.5.2'
-include ':libraries:entrypoints:entrypoints-mc13w16a-mc1.14.4'
 
 include ':libraries:executors'
 include ':libraries:executors:executors-mcin-20100128-2304-mcb1.9-pre2'
-include ':libraries:executors:executors-mcb1.9-pre3-mc12w17a'
-include ':libraries:executors:executors-mc12w18a-mc1.7.5'
-include ':libraries:executors:executors-mc1.7.6-pre1-mc1.7.10'
-include ':libraries:executors:executors-mc14w02a-mc14w06b'
-include ':libraries:executors:executors-mc14w07a-mc14w20b'
-include ':libraries:executors:executors-mc14w21a-mc1.13.2'
-include ':libraries:executors:executors-mc18w43a-mc1.14.4'
 
 include ':libraries:items'
 include ':libraries:items:items-mca1.0.1_01-mc1.6.4'
-include ':libraries:items:items-mc13w36a-mc14w25b'
-include ':libraries:items:items-mc14w26a-mc17w46a'
-include ':libraries:items:items-mc17w47a-mc18w31a'
-include ':libraries:items:items-mc18w32a-mc1.13.2'
-include ':libraries:items:items-mc18w43a-mc1.14.4'
 
 include ':libraries:keybinds'
 include ':libraries:keybinds:keybinds-mcc0.0.23a_01-mcb1.7.3'
-include ':libraries:keybinds:keybinds-mcb1.8-pre1-mc1.6.4'
-include ':libraries:keybinds:keybinds-mc13w36a-mc17w15a'
-include ':libraries:keybinds:keybinds-mc17w16a-mc1.12.2'
-include ':libraries:keybinds:keybinds-mc17w43a-mc1.14.4'
 
 include ':libraries:lifecycle-events'
 include ':libraries:lifecycle-events:lifecycle-events-mcinf-20100630-1340-mca1.2.6'
-include ':libraries:lifecycle-events:lifecycle-events-mca0.1.0-mca0.1.4'
-include ':libraries:lifecycle-events:lifecycle-events-mca0.2.0-mca0.2.8'
-include ':libraries:lifecycle-events:lifecycle-events-mcb1.0-mcb1.2_02'
-include ':libraries:lifecycle-events:lifecycle-events-mcb1.3-mc12w17a'
-include ':libraries:lifecycle-events:lifecycle-events-mc12w18a-mc12w19a'
-include ':libraries:lifecycle-events:lifecycle-events-mc12w21a-mc1.6.4'
-include ':libraries:lifecycle-events:lifecycle-events-mc13w36a-mc19w07a'
-include ':libraries:lifecycle-events:lifecycle-events-mc19w08a-mc1.14.4'
 
 include ':libraries:localization'
 include ':libraries:localization:localization-mca1.0.1_01-mca1.2.6'
-include ':libraries:localization:localization-mcb1.0-mc11w48a'
-include ':libraries:localization:localization-mc11w49a-mc1.5.2'
-include ':libraries:localization:localization-mc13w26a-mc18w01a'
-include ':libraries:localization:localization-mc18w02a-mc1.14.4'
 
 include ':libraries:networking'
 include ':libraries:networking:networking-mca1.0.16-mca1.2.6'
-include ':libraries:networking:networking-mca0.1.0-mca0.2.1'
-include ':libraries:networking:networking-mca0.2.2-mca0.2.8'
-include ':libraries:networking:networking-mcb1.0-mc13w39b'
-include ':libraries:networking:networking-mc13w41a-mc18w30b'
-include ':libraries:networking:networking-mc18w31a-mc1.14.4'
 
 include ':libraries:networking-impl'
 include ':libraries:networking-impl:networking-impl-mca1.0.16-mca1.2.6'
-include ':libraries:networking-impl:networking-impl-mca0.1.2_01-mca0.2.8'
-include ':libraries:networking-impl:networking-impl-mcb1.0-mcb1.4_01'
-include ':libraries:networking-impl:networking-impl-mcb1.5-mc11w48a'
-include ':libraries:networking-impl:networking-impl-mc11w49a-mc12w16a'
-include ':libraries:networking-impl:networking-impl-mc12w17a-mc12w17a'
-include ':libraries:networking-impl:networking-impl-mc12w18a-mc12w19a'
-include ':libraries:networking-impl:networking-impl-mc12w21a-mc13w39b'
-include ':libraries:networking-impl:networking-impl-mc13w41a-mc14w20b'
-include ':libraries:networking-impl:networking-impl-mc14w21a-mc14w30c'
-include ':libraries:networking-impl:networking-impl-mc14w31a-mc1.13-pre2'
-include ':libraries:networking-impl:networking-impl-mc1.13-pre3-mc1.13-pre3'
-include ':libraries:networking-impl:networking-impl-mc1.13-pre4-mc1.13.2'
-include ':libraries:networking-impl:networking-impl-mc18w43a-mc1.14.4'
 
 include ':libraries:resource-loader'
 include ':libraries:resource-loader:resource-loader-mca1.0.1_01-mca1.2.1_01'
-include ':libraries:resource-loader:resource-loader-mca1.2.2-mc1.2.5'
-include ':libraries:resource-loader:resource-loader-mc12w15a-mc13w07a'
-include ':libraries:resource-loader:resource-loader-mc13w09a-mc1.5.2'
-include ':libraries:resource-loader:resource-loader-mc13w26a-mc1.8.2-pre4'
-include ':libraries:resource-loader:resource-loader-mc1.8.2-pre5-mc1.12.2'
-include ':libraries:resource-loader:resource-loader-mc17w43a-mc19w05a'
-include ':libraries:resource-loader:resource-loader-mc19w07a-mc1.14.4'
 
 include ':libraries:text-components'
 include ':libraries:text-components:text-components-mca0.1.0-mc1.14.4'

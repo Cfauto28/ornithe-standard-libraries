@@ -1,4 +1,4 @@
-package net.ornithemc.osl.core.impl.mixin.client;
+/*package net.ornithemc.osl.core.impl.mixin.client;
 
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -43,3 +43,4 @@ public class IdentifierMixin implements NamespacedIdentifier {
 		return path;
 	}
 }
+*/

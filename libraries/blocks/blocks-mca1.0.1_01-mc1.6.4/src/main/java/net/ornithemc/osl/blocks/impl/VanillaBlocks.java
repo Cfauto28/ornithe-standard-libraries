@@ -3,7 +3,7 @@ package net.ornithemc.osl.blocks.impl;
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
 
-import net.minecraft.block.Block;
+import ext.block.ExtBlock;
 
 import net.ornithemc.osl.blocks.api.block.Blocks;
 import net.ornithemc.osl.core.api.util.NamespacedIdentifiers;
@@ -219,10 +219,10 @@ final class VanillaBlocks {
 		// Air block added by OSL
 		register(Blocks.AIR);
 
-		for (Field f : Block.class.getDeclaredFields()) {
-			if (Modifier.isStatic(f.getModifiers()) && Block.class.isAssignableFrom(f.getType())) {
+		for (Field f : ExtBlock.class.getDeclaredFields()) {
+			if (Modifier.isStatic(f.getModifiers()) && ExtBlock.class.isAssignableFrom(f.getType())) {
 				try {
-					Block block = (Block) f.get(null);
+					ExtBlock block = (ExtBlock) f.get(null);
 
 					if (block != null) {
 						register(block);
@@ -233,7 +233,7 @@ final class VanillaBlocks {
 		}
 	}
 
-	private static void register(Block block) {
+	private static void register(ExtBlock block) {
 		if (block.id >= 0 && block.id < IDENTIFIERS.length) {
 			String identifier = IDENTIFIERS[block.id];
 

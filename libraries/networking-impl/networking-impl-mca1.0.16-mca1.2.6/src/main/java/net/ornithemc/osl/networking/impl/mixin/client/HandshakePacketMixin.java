@@ -6,11 +6,11 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-import net.minecraft.network.packet.HandshakePacket;
+import net.minecraft.network.packet.Packet2Handshake;
 
 import net.ornithemc.osl.networking.impl.Constants;
 
-@Mixin(HandshakePacket.class)
+@Mixin(Packet2Handshake.class)
 public class HandshakePacketMixin {
 
 	@Shadow private String key;

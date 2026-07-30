@@ -11,6 +11,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import com.llamalad7.mixinextras.sugar.Share;
 import com.llamalad7.mixinextras.sugar.ref.LocalBooleanRef;
 
+import ext.block.ExtBlock;
 import net.minecraft.block.Block;
 
 import net.ornithemc.osl.blocks.impl.BlockRegistryImpl;
@@ -34,7 +35,7 @@ public class BlockMixin {
 			from = @At(
 				value = "FIELD",
 				opcode = Opcodes.PUTSTATIC,
-				target = "Lnet/minecraft/block/Block;STONE:Lnet/minecraft/block/Block;"
+				target = "Lext/block/ExtBlock;STONE:Lext/block/ExtBlock;"
 			)
 		),
 		at = @At(
@@ -55,6 +56,6 @@ public class BlockMixin {
 
 	@Override
 	public String toString() {
-		return "Block{" + BlockRegistryImpl.getKey((Block) (Object) this) + "}";
+		return "Block{" + BlockRegistryImpl.getKey((ExtBlock) (Object) this) + "}";
 	}
 }

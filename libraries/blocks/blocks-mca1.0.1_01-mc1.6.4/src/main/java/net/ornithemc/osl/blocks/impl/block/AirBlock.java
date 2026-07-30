@@ -1,11 +1,11 @@
 package net.ornithemc.osl.blocks.impl.block;
 
-import net.minecraft.block.Block;
+import ext.block.ExtBlock;
 import net.minecraft.block.material.Material;
 import net.minecraft.util.math.Box;
 import net.minecraft.world.World;
 
-public class AirBlock extends Block {
+public class AirBlock extends ExtBlock {
 
 	public AirBlock() {
 		super(0, Material.AIR);
@@ -27,7 +27,7 @@ public class AirBlock extends Block {
 	}
 
 	@Override
-	public boolean isSolidRender() {
+	public boolean isSolid() {
 		return false;
 	}
 

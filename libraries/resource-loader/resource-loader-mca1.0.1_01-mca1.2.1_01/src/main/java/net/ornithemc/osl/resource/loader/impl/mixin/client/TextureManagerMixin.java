@@ -1,8 +1,15 @@
 package net.ornithemc.osl.resource.loader.impl.mixin.client;
 
+import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.Reader;
+import java.nio.charset.StandardCharsets;
 
+import javax.imageio.ImageIO;
+
+import org.apache.logging.log4j.core.util.IOUtils;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.Unique;
@@ -38,27 +45,29 @@ public class TextureManagerMixin implements ResourceReloadListener {
 		method = "load(Ljava/lang/String;)I",
 		at = @At(
 			value = "INVOKE",
-			target = "Ljava/lang/Class;getResourceAsStream(Ljava/lang/String;)Ljava/io/InputStream;"
+			target = "Lnet/minecraft/client/render/texture/TextureManager;method_1_1196(Ljava/io/InputStream;)Ljava/awt/image/BufferedImage;"
 		)
 	)
-	private InputStream osl$resource_loader$loadResource(Class<TextureManager> cls, String path) {
+	private BufferedImage osl$resource_loader$loadResource(TextureManager cls, InputStream path) {
 		try {
-			return this.resourceManager.getResource(path);
+			//String img = IOUtils.toString(new InputStreamReader(path));
+			return ImageIO.read(path);//this.resourceManager.getResource(img));
 		} catch (IOException e) {
 			return null;
 		}
 	}
 
 	@Redirect(
-		method = "reload",
+		method = "reload()V",
 		at = @At(
 			value = "INVOKE",
-			target = "Ljava/lang/Class;getResourceAsStream(Ljava/lang/String;)Ljava/io/InputStream;"
+			target = "Lnet/minecraft/client/render/texture/TextureManager;method_1_1196(Ljava/io/InputStream;)Ljava/awt/image/BufferedImage;"
 		)
 	)
-	private InputStream osl$resource_loader$reloadResource(Class<TextureManager> cls, String path) {
+	private BufferedImage osl$resource_loader$reloadResource(TextureManager cls, InputStream path) {
 		try {
-			return this.resourceManager.getResource(path);
+			//String img = IOUtils.toString(new InputStreamReader(path));
+			return ImageIO.read(path);//this.resourceManager.getResource(img));
 		} catch (IOException e) {
 			return null;
 		}

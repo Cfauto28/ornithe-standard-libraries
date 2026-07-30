@@ -1,6 +1,7 @@
-package net.ornithemc.osl.blocks.impl.mixin.common;
+/*package net.ornithemc.osl.blocks.impl.mixin.common;
 
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Pseudo;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.RepeaterBlock;
@@ -19,3 +20,4 @@ public class RepeaterBlockMixin extends Block {
 	}
 
 }
+*/

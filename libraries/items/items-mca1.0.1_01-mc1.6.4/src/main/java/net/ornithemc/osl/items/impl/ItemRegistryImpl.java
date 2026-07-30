@@ -4,7 +4,8 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
-import net.minecraft.block.Block;
+import ext.block.ExtBlock;
+//import net.minecraft.block.Block;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 
@@ -15,7 +16,7 @@ import net.ornithemc.osl.items.impl.mixin.common.BlockItemAccess;
 
 public final class ItemRegistryImpl {
 
-	public static final Map<Block, Item> BLOCK_ITEMS = new HashMap<>();
+	public static final Map<ExtBlock, Item> BLOCK_ITEMS = new HashMap<>();
 
 	private static boolean locked = true;
 	private static boolean itemsInitialized = false;
@@ -41,7 +42,7 @@ public final class ItemRegistryImpl {
 		return Item.REGISTRY.keySet();
 	}
 
-	public static BlockItem register(Block block) {
+	public static BlockItem register(ExtBlock block) {
 		return register(block, new BlockItem(BlockRegistry.getId(block)));
 	}
 
@@ -49,7 +50,7 @@ public final class ItemRegistryImpl {
 		return register(BlockRegistry.getBlock(((BlockItemAccess) item).accessBlock()), item);
 	}
 
-	public static <T extends Item> T register(Block block, T item) {
+	public static <T extends Item> T register(ExtBlock block, T item) {
 		if (!locked) {
 			BLOCK_ITEMS.put(block, item);
 		}

@@ -2,7 +2,7 @@ package net.ornithemc.osl.blocks.api;
 
 import java.util.Set;
 
-import net.minecraft.block.Block;
+import ext.block.ExtBlock;
 
 import net.ornithemc.osl.blocks.impl.BlockRegistryImpl;
 import net.ornithemc.osl.core.api.util.NamespacedIdentifier;
@@ -15,28 +15,28 @@ public final class BlockRegistry {
 	/**
 	 * @return the numerical ID assigned to the given block.
 	 */
-	public static int getId(Block block) {
+	public static int getId(ExtBlock block) {
 		return BlockRegistryImpl.getId(block);
 	}
 
 	/**
 	 * @return the namespaced ID assigned to the given block.
 	 */
-	public static NamespacedIdentifier getKey(Block block) {
+	public static NamespacedIdentifier getKey(ExtBlock block) {
 		return BlockRegistryImpl.getKey(block);
 	}
 
 	/**
 	 * @return the block mapped to the given numerical ID.
 	 */
-	public static Block getBlock(int id) {
+	public static ExtBlock getBlock(int id) {
 		return BlockRegistryImpl.getBlock(id);
 	}
 
 	/**
 	 * @return the block mapped to the given namespaced ID.
 	 */
-	public static Block getBlock(NamespacedIdentifier key) {
+	public static ExtBlock getBlock(NamespacedIdentifier key) {
 		return BlockRegistryImpl.getBlock(key);
 	}
 
@@ -54,7 +54,7 @@ public final class BlockRegistry {
 	 * @param block the block to register.
 	 * @return the registered  block.
 	 */
-	public static <T extends Block> T register(int id, NamespacedIdentifier key, T block) {
+	public static <T extends ExtBlock> T register(int id, NamespacedIdentifier key, T block) {
 		return BlockRegistryImpl.register(id, key, block);
 	}
 }

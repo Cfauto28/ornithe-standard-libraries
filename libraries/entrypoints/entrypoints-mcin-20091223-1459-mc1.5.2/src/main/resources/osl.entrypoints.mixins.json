@@ -9,7 +9,7 @@
 		"client.MinecraftAppletMixin"
 	],
 	"server": [
-		"server.MinecraftServerMixin"
+		//"server.MinecraftServerMixin"
 	],
 	"injectors": {
 		"defaultRequire": 1

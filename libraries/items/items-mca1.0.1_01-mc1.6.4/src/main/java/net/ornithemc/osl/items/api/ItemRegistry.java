@@ -2,7 +2,8 @@ package net.ornithemc.osl.items.api;
 
 import java.util.Set;
 
-import net.minecraft.block.Block;
+import ext.block.ExtBlock;
+//import net.minecraft.block.Block;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 
@@ -53,7 +54,7 @@ public final class ItemRegistry {
 	 * @param block the block item to register.
 	 * @return the registered block item.
 	 */
-	public static BlockItem register(Block block) {
+	public static BlockItem register(ExtBlock block) {
 		return ItemRegistryImpl.register(block);
 	}
 
@@ -72,7 +73,7 @@ public final class ItemRegistry {
 	 * @param item  the item to register.
 	 * @return the registered item.
 	 */
-	public static <T extends Item> T register(Block block, T item) {
+	public static <T extends Item> T register(ExtBlock block, T item) {
 		return ItemRegistryImpl.register(block, item);
 	}
 

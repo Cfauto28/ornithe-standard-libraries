@@ -1,6 +1,7 @@
-package net.ornithemc.osl.entrypoints.impl.mixin.server;
+/*package net.ornithemc.osl.entrypoints.impl.mixin.server;
 
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Pseudo;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
@@ -13,7 +14,7 @@ import net.ornithemc.osl.entrypoints.api.ModInitializer;
 import net.ornithemc.osl.entrypoints.api.server.ServerModInitializer;
 import net.ornithemc.osl.entrypoints.impl.launch.LaunchUtils;
 
-@Mixin(MinecraftServer.class)
+@Pseudo @Mixin(MinecraftServer.class)
 public class MinecraftServerMixin {
 
 	@Inject(
@@ -37,3 +38,4 @@ public class MinecraftServerMixin {
 		LaunchUtils.triggerLaunchEvents(args);
 	}
 }
+*/

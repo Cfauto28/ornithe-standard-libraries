@@ -1,7 +1,22 @@
 buildscript {
-	dependencies {
-		classpath 'net.fabricmc:fabric-loader:0.18.6'
-	}
+   repositories {
+        mavenCentral()
+        flatDir {
+            dirs 'libs2'
+        }
+    }
+    dependencies {
+	classpath 'net.fabricmc:fabric-loader:0.18.6'
+        classpath files('libs2/ploceus-1.17.local.jar')
+	//classpath files('libs2/fabric-loom-1.17.local.jar')
+        classpath files('libs2/signature-changer-1.0.0.jar')
+	classpath files('libs2/mapping-utils-0.19.2.jar')
+	classpath files('libs2/nester-1.4.0.jar')
+	classpath files('libs2/exceptor-1.1.0.jar')
+	classpath files('libs2/preen-1.1.0.jar')
+	classpath files('libs2/condor-1.4.5.jar')
+	classpath 'com.vdurmont:semver4j:3.1.0'
+    }
 }
 
 plugins {
@@ -9,8 +24,8 @@ plugins {
 	id 'eclipse'
 	id 'idea'
 	id 'maven-publish'
-	id 'fabric-loom' version '1.17-SNAPSHOT' apply false
-	id 'ploceus' version '1.17-SNAPSHOT' apply false
+	id 'fabric-loom' version '1.17.17'// apply false
+	//id 'ploceus' version '1.17-SNAPSHOT' apply false
 }
 
 import net.fabricmc.loader.api.SemanticVersion
@@ -33,6 +48,11 @@ def setUpJar(project) {
 
 	project.ploceus {
 		setIntermediaryGeneration(2)
+		disableLibraryUpgrades()
+	}
+
+	project.loom {
+		clientOnlyMinecraftJar()
 	}
 
 	project.repositories {
@@ -45,7 +65,7 @@ def setUpJar(project) {
 	project.dependencies {
 		// dummy mc dependency to keep loom happy
 		minecraft "com.mojang:minecraft:${project.rootProject.minecraft_version}"
-		mappings project.ploceus.featherMappings(project.rootProject.feather_build)
+		mappings ("net.ornithemc:feather-gen2:a1.0.16.05_20+build.1-v2")
 		modImplementation "net.fabricmc:fabric-loader:${project.rootProject.loader_version}"
 	}
 
@@ -220,6 +240,7 @@ def setUpLibrary(project) {
 
 		implementation "org.apache.logging.log4j:log4j-api:2.19.0"
 		implementation "org.apache.logging.log4j:log4j-core:2.19.0"
+		implementation "it.unimi.dsi:fastutil:8.5.11"
 
 		implementation "org.quiltmc.parsers:json:${project.rootProject.quilt_parsers_version}"
 
@@ -289,8 +310,14 @@ def setUpModule(project) {
 			accessWidenerPath = ctfile
 		}
 	}
+
 	project.ploceus {
 		setIntermediaryGeneration(2)
+		disableLibraryUpgrades()
+	}
+
+	project.loom {
+		clientOnlyMinecraftJar()
 	}
 
 	def libraries = []
@@ -303,6 +330,13 @@ def setUpModule(project) {
 	project.dependencies {
 		minecraft "com.mojang:minecraft:${project.minecraft_version}"
 		modImplementation "net.fabricmc:fabric-loader:${project.rootProject.loader_version}"
+		include "it.unimi.dsi:fastutil:8.5.11"
+		include "org.apache.commons:commons-lang3:3.14.0"
+		include "io.netty:netty-all:4.1.94.Final"
+		include 'org.apache.logging.log4j:log4j-api:2.23.1'
+		include 'org.apache.logging.log4j:log4j-core:2.23.1'
+		include "com.google.code.gson:gson:2.10.1"
+		include "com.google.guava:guava:33.2.1-jre"
 
 		if (project.hasProperty('raven_build')) {
 			exceptions project.ploceus.raven(project.raven_build)
@@ -333,9 +367,9 @@ def setUpModule(project) {
 		}
 
 		if (project.hasProperty('feather_build')) {
-			mappings project.ploceus.featherMappings(project.feather_build)
+			mappings ("net.ornithemc:feather-gen2:a1.0.16.05_20+build.1-v2")
 		} else {
-			mappings project.ploceus.featherMappings(project.rootProject.feather_build)
+			mappings ("net.ornithemc:feather-gen2:a1.0.16.05_20+build.1-v2")
 		}
 
 		implementation "org.quiltmc.parsers:json:${project.rootProject.quilt_parsers_version}"
@@ -522,7 +556,7 @@ def findModuleDependency(project, libraryName) {
 	def library = project.project(":libraries:${libraryName}")
 	def modules = library.getSubprojects()
 
-	def projectMcVersion = getMinecraftVersion(project.minecraft_version)
+	//def projectMcVersion = getMinecraftVersion()
 
 	for (module : modules) {
 		if (!environmentsMatch(project, module)) {
@@ -536,9 +570,9 @@ def findModuleDependency(project, libraryName) {
 		def minMcVersion = getMinecraftVersion(mcVersionParts[1])
 		def maxMcVersion = getMinecraftVersion(mcVersionParts[2])
 
-		if (projectMcVersion >= minMcVersion && projectMcVersion <= maxMcVersion) {
+		//if (projectMcVersion >= minMcVersion && projectMcVersion <= maxMcVersion) {
 			return moduleName;
-		}
+		//}
 	}
 
 	return null
