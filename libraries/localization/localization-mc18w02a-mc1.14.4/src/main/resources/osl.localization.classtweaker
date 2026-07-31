@@ -1,3 +1,0 @@
-classTweaker	v1	named
-
-inject-interface	net/minecraft/client/resource/language/Language	net/ornithemc/osl/localization/api/language/Language

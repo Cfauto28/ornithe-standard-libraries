@@ -1,3 +1,0 @@
-classTweaker	v1	named
-
-transitive-inject-interface	net/minecraft/client/options/KeyBinding	net/ornithemc/osl/keybinds/impl/keybind/KeyBindingExtensionImpl
