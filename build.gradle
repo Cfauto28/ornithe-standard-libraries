@@ -330,13 +330,13 @@ def setUpModule(project) {
 		minecraft "com.mojang:minecraft:${project.minecraft_version}"
 		modImplementation "net.fabricmc:fabric-loader:${project.rootProject.loader_version}"
 		
-		include "it.unimi.dsi:fastutil:8.5.11"
-		include "org.apache.commons:commons-lang3:3.14.0"
-		include "io.netty:netty-all:4.1.94.Final"
-		include 'org.apache.logging.log4j:log4j-api:2.23.1'
-		include 'org.apache.logging.log4j:log4j-core:2.23.1'
-		include "com.google.code.gson:gson:2.10.1"
-		include "com.google.guava:guava:33.2.1-jre"
+		include(implementation("it.unimi.dsi:fastutil:8.5.11"))
+		include(implementation("org.apache.commons:commons-lang3:3.14.0"))
+		include(implementation("io.netty:netty-all:4.1.94.Final"))
+		include(implementation('org.apache.logging.log4j:log4j-api:2.23.1'))
+		include(implementation('org.apache.logging.log4j:log4j-core:2.23.1'))
+		include(implementation("com.google.code.gson:gson:2.10.1"))
+		include(implementation("com.google.guava:guava:33.2.1-jre"))
 
 		if (project.hasProperty('raven_build')) {
 			exceptions project.ploceus.raven(project.raven_build)
