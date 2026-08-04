@@ -3,7 +3,6 @@ package net.ornithemc.osl.items.api;
 import java.util.Set;
 
 import ext.block.ExtBlock;
-//import net.minecraft.block.Block;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 

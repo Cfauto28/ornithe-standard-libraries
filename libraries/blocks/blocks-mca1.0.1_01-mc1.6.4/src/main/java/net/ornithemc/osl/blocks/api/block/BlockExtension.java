@@ -1,7 +1,6 @@
 package net.ornithemc.osl.blocks.api.block;
 
 import ext.block.ExtBlock;
-import net.minecraft.block.Block;
 
 import net.ornithemc.osl.core.api.registry.DefaultedIdRegistry;
 import net.ornithemc.osl.core.api.registry.SimpleIdRegistry;

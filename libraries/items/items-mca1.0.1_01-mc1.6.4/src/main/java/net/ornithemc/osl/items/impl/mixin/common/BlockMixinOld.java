@@ -5,11 +5,10 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-import net.minecraft.block.Block;
-
+import ext.block.ExtBlock;
 import net.ornithemc.osl.items.impl.ItemRegistryImpl;
 
-@Mixin(Block.class)
+@Mixin(ExtBlock.class)
 public class BlockMixinOld {
 
 	@Inject(

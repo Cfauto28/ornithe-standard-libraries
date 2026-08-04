@@ -3,7 +3,7 @@ package net.ornithemc.osl.blocks.impl;
 import java.util.Set;
 
 import ext.block.ExtBlock;
-import net.minecraft.block.Block;
+import ext.newblock.ExtNewBlock;
 import net.ornithemc.osl.blocks.api.BlockEvents;
 import net.ornithemc.osl.core.api.util.NamespacedIdentifier;
 

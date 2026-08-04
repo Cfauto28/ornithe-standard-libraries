@@ -1,7 +1,6 @@
 package net.ornithemc.osl.blocks.api.block;
 
 import ext.block.ExtBlock;
-import net.minecraft.block.Block;
 
 import net.ornithemc.osl.blocks.impl.block.AirBlock;
 

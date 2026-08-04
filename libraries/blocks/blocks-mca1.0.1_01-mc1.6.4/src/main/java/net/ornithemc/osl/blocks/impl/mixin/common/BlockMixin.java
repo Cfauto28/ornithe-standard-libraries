@@ -12,11 +12,10 @@ import com.llamalad7.mixinextras.sugar.Share;
 import com.llamalad7.mixinextras.sugar.ref.LocalBooleanRef;
 
 import ext.block.ExtBlock;
-import net.minecraft.block.Block;
 
 import net.ornithemc.osl.blocks.impl.BlockRegistryImpl;
 
-@Mixin(Block.class)
+@Mixin(ExtBlock.class)
 public class BlockMixin {
 
 	@Inject(
@@ -40,7 +39,7 @@ public class BlockMixin {
 		),
 		at = @At(
 			value = "CONSTANT",
-			args = "intValue=256",
+			args = "intValue=32767",
 			ordinal = 0
 		)
 	)
