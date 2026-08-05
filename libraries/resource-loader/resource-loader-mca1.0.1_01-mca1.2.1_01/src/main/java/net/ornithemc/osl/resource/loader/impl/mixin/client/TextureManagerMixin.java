@@ -1,15 +1,7 @@
 package net.ornithemc.osl.resource.loader.impl.mixin.client;
 
-import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.Reader;
-import java.nio.charset.StandardCharsets;
-
-import javax.imageio.ImageIO;
-
-import org.apache.logging.log4j.core.util.IOUtils;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.Unique;
@@ -17,7 +9,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.Redirect;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
-
+import ext.client.visuals.VisualsClass;
 import net.minecraft.client.render.texture.TextureManager;
 
 import net.ornithemc.osl.resource.loader.api.resource.manager.ResourceManager;
@@ -42,32 +34,30 @@ public class TextureManagerMixin implements ResourceReloadListener {
 	private void reload() { }
 
 	@Redirect(
-		method = "load(Ljava/lang/String;)I",
-		at = @At(
-			value = "INVOKE",
-			target = "Lnet/minecraft/client/render/texture/TextureManager;method_1_1196(Ljava/io/InputStream;)Ljava/awt/image/BufferedImage;"
-		)
+	    method = "load(Ljava/lang/String;)I",
+	    at = @At(
+	        value = "INVOKE",
+	        target = "Lext/client/visuals/VisualsClass;getResourceAsStream(Ljava/lang/String;)Ljava/io/InputStream;"
+	    )
 	)
-	private BufferedImage osl$resource_loader$loadResource(TextureManager cls, InputStream path) {
-		try {
-			//String img = IOUtils.toString(new InputStreamReader(path));
-			return ImageIO.read(path);//this.resourceManager.getResource(img));
+	private InputStream getLoadPath(VisualsClass vc, String path) {
+	    try {
+			return this.resourceManager.getResource(path);
 		} catch (IOException e) {
 			return null;
 		}
 	}
 
 	@Redirect(
-		method = "reload()V",
-		at = @At(
-			value = "INVOKE",
-			target = "Lnet/minecraft/client/render/texture/TextureManager;method_1_1196(Ljava/io/InputStream;)Ljava/awt/image/BufferedImage;"
-		)
+	    method = "reload()V",
+	    at = @At(
+	        value = "INVOKE",
+	        target = "Lext/client/visuals/VisualsClass;getResourceAsStream(Ljava/lang/String;)Ljava/io/InputStream;"
+	    )
 	)
-	private BufferedImage osl$resource_loader$reloadResource(TextureManager cls, InputStream path) {
-		try {
-			//String img = IOUtils.toString(new InputStreamReader(path));
-			return ImageIO.read(path);//this.resourceManager.getResource(img));
+	private InputStream getReloadPath(VisualsClass vc, String path) {
+	    try {
+			return this.resourceManager.getResource(path);
 		} catch (IOException e) {
 			return null;
 		}
