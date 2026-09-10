@@ -6,7 +6,7 @@ buildscript {
         }
     }
     dependencies {
-		classpath 'net.fabricmc:fabric-loader:0.18.6'
+		classpath 'net.fabricmc:fabric-loader:0.19.5'
 		classpath 'com.vdurmont:semver4j:3.1.0'
 
         classpath files('depLib/ploceus-1.17.local.jar')
@@ -30,20 +30,22 @@ plugins {
 import net.fabricmc.loader.api.SemanticVersion
 import net.fabricmc.loader.impl.game.minecraft.McVersionLookup
 
-setUpJar(project)
+base {
+	archivesName = "${project.mod_id_long}"
+}
+version = "${project.mod_version}"
+group = "${project.mod_maven_group}"
 
-def setUpJar(project) {
-	project.apply plugin: 'java-library'
-	project.apply plugin: 'eclipse'
-	project.apply plugin: 'idea'
-	project.apply plugin: 'fabric-loom'
-	project.apply plugin: 'ploceus'
+ploceus {
+	setIntermediaryGeneration(2)
+}
 
-	project.base {
-		archivesName = "${project.rootProject.mod_id_long}"
+repositories {
+	maven {
+		name = 'Quilt'
+		url = 'https://maven.quiltmc.org/repository/release'
 	}
-	project.version = "${project.rootProject.mod_version}"
-	project.group = "${project.rootProject.mod_maven_group}"
+}
 
 	project.ploceus {
 		setIntermediaryGeneration(2)
@@ -53,13 +55,49 @@ def setUpJar(project) {
 	project.loom {
 		clientOnlyMinecraftJar()
 	}
+/*dependencies {
+	// dummy mc dependency to keep loom happy
+	minecraft "com.mojang:minecraft:${project.minecraft_version}"
+	modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
 
-	project.repositories {
-		maven {
-			name = 'Quilt'
-			url = 'https://maven.quiltmc.org/repository/release'
-		}
+	mappings ploceus.featherMappings(project.feather_build)
+}*/
+
+tasks.register('generateModJson', net.fabricmc.loom.task.FabricModJsonV1Task) {
+	fillModJson(project, it)
+
+	json {
+		modId = "${project.mod_id_short}" // use short id for backwards compat
+		name = "${project.mod_name_long}"
+		description = "${project.mod_description}"
+
+		icon "assets/${project.mod_id_long}/icon.png"
+
+		environment = "*"
+		depends "minecraft", "*"
 	}
+}
+
+tasks.withType(GenerateModuleMetadata) {
+	enabled = false
+}
+
+tasks.withType(JavaCompile).configureEach {
+	it.options.encoding = 'UTF-8'
+	it.options.release = 8
+}
+
+java {
+	// Still required by IDEs such as Eclipse and Visual Studio Code
+	sourceCompatibility = JavaVersion.VERSION_1_8
+	targetCompatibility = JavaVersion.VERSION_1_8
+}
+
+jar {
+	from(file('LICENSE')) {
+		rename { "${it}_${base.archivesName.get()}" }
+	}
+}
 
 	project.dependencies {
 		// dummy mc dependency to keep loom happy
@@ -67,68 +105,30 @@ def setUpJar(project) {
 		mappings ("net.ornithemc:feather-gen2:a1.0.16.05_20+build.1-v2")
 		modImplementation "net.fabricmc:fabric-loader:${project.rootProject.loader_version}"
 	}
+publishing {
+	publications {
+		mavenJava(MavenPublication) {
+			artifactId project.mod_artifact_id
 
-	project.tasks.register('generateModJson', net.fabricmc.loom.task.FabricModJsonV1Task) {
-		fillModJson(project, it)
-
-		json {
-			modId = "${project.rootProject.mod_id_short}" // use short id for backwards compat
-			name = "${project.rootProject.mod_name_long}"
-			description = "${project.rootProject.mod_description}"
-
-			icon "assets/${project.rootProject.mod_id_long}/icon.png"
-
-			environment = "*"
-			depends "minecraft", "*"
-		}
-	}
-
-	project.tasks.withType(GenerateModuleMetadata) {
-		enabled = false
-	}
-
-	project.tasks.withType(JavaCompile).configureEach {
-		it.options.encoding = 'UTF-8'
-		it.options.release = 8
-	}
-
-	project.java {
-		// Still required by IDEs such as Eclipse and Visual Studio Code
-		sourceCompatibility = JavaVersion.VERSION_1_8
-		targetCompatibility = JavaVersion.VERSION_1_8
-	}
-
-	project.jar {
-		from(project.rootProject.file('LICENSE')) {
-			rename { "${it}_${project.base.archivesName.get()}" }
-		}
-	}
-
-	project.publishing {
-		publications {
-			mavenJava(MavenPublication) {
-				artifactId project.mod_artifact_id
-	
-				pom.withXml {
-					asNode().appendNode('dependencies')
-				}
+			pom.withXml {
+				asNode().appendNode('dependencies')
 			}
 		}
-		repositories {
-			def ENV = System.getenv()
-	
-			if (ENV.MAVEN_URL) {
-				maven {
-					url ENV.MAVEN_URL
-	
-					credentials {
-						username ENV.MAVEN_USERNAME
-						password ENV.MAVEN_PASSWORD
-					}
+	}
+	repositories {
+		def ENV = System.getenv()
+
+		if (ENV.MAVEN_URL) {
+			maven {
+				url ENV.MAVEN_URL
+
+				credentials {
+					username ENV.MAVEN_USERNAME
+					password ENV.MAVEN_PASSWORD
 				}
-			} else {
-				mavenLocal()
 			}
+		} else {
+			mavenLocal()
 		}
 	}
 }
@@ -231,7 +231,7 @@ def setUpLibrary(project) {
 	def modules = []
 
 	if (!isCore) {
-		findLibraryDependencies(project, libraries, modules)
+		getLibraryDependencyNotations(project, libraries, modules)
 	}
 
 	project.dependencies {
@@ -244,18 +244,12 @@ def setUpLibrary(project) {
 		implementation "org.quiltmc.parsers:json:${project.rootProject.quilt_parsers_version}"
 
 		libraries.each { libraryPath ->
+			evaluationDependsOn libraryPath
 			implementation project.dependencies.project(path: libraryPath)
-
-			if (libraryPath == ':libraries:core') {
-				evaluationDependsOn libraryPath
-			}
 		}
 		modules.each { modulePath ->
+			evaluationDependsOn modulePath
 			implementation project.dependencies.project(path: modulePath, configuration: 'namedElements')
-
-			if (modulePath.startsWith(':libraries:core')) {
-				evaluationDependsOn modulePath
-			}
 		}
 	}
 
@@ -323,7 +317,7 @@ def setUpModule(project) {
 	def modules = []
 
 	if (!isCore) {
-		findModuleDependencies(project, libraries, modules)
+		getModuleDependencyNotations(project, libraries, modules)
 	}
 
 	project.dependencies {
@@ -380,18 +374,12 @@ def setUpModule(project) {
 		implementation project.dependencies.project(path: library.path)
 
 		libraries.each { libraryPath ->
+			evaluationDependsOn libraryPath
 			implementation project.dependencies.project(path: libraryPath)
-
-			if (libraryPath == ':libraries:core') {
-				evaluationDependsOn libraryPath
-			}
 		}
 		modules.each { modulePath ->
+			evaluationDependsOn modulePath
 			implementation project.dependencies.project(path: modulePath, configuration: 'namedElements')
-
-			if (modulePath.startsWith(':libraries:core')) {
-				evaluationDependsOn modulePath
-			}
 		}
 	}
 
@@ -446,15 +434,19 @@ def setUpModule(project) {
 				environment = '*'
 			}
 
-			depends "minecraft", "${project.minecraft_dependency}"
+			def minMcVersion = getMinecraftVersion(project.min_mc_version)
+			def maxMcVersion = getMinecraftVersion(project.max_mc_version)
 
-			if (!isCore && library.hasProperty('osl_dependencies')) {
-				for (def dependency : library.osl_dependencies.split(',')) {
-					def parts = dependency.split(':')
-					def library_id = parts[0]
-					def library_versions = parts[1]
+			depends "minecraft", ">=${minMcVersion} <=${maxMcVersion}"
 
-					depends "${project.rootProject.mod_id_short}-${library_id}", library_versions
+			if (!isCore) {
+				def deps = findDependencies(project)
+
+				for (e : deps.entrySet()) {
+					def library_id = e.key
+					def library_version = e.value
+
+					depends "${project.rootProject.mod_id_short}-${library_id}", ">=${library_version}"
 				}
 			}
 		}
@@ -525,24 +517,52 @@ def setUpModule(project) {
 	setUpJavadoc(project)
 }
 
-def findLibraryDependencies(project, libraries, modules) {
+def findDependencies(project) {
+	def deps = new LinkedHashMap<>()
+	findDependencies(project, deps)
+	return deps
+}
+
+def findDependencies(project, libraries) {
 	if (project.hasProperty('osl_dependencies')) {
 		def deps = project.osl_dependencies.split(',')
 
 		for (dep : deps) {
 			def libraryName = dep.substring(0, dep.indexOf(':'))
+			def libraryVersion = dep.substring(dep.indexOf(':') + 1)
+			def libraryProject = project.project(":libraries:${libraryName}")
+
+			findDependencies(libraryProject, libraries)
+
+			libraries.compute(libraryName, (key, value) -> {
+				def version = SemanticVersion.parse(libraryVersion)
+
+				if (value == null || version > value) {
+					return version
+				} else {
+					return value;
+				}
+			})
+		}
+	}
+}
+
+def getLibraryDependencyNotations(project, libraries, modules) {
+	if (project.hasProperty('osl_dependencies')) {
+		def deps = findDependencies(project)
+
+		for (libraryName : deps.keySet()) {
 			libraries.add(":libraries:${libraryName}")
 		}
 	}
 }
 
-def findModuleDependencies(project, libraries, modules) {
+def getModuleDependencyNotations(project, libraries, modules) {
 	if (project.hasProperty('osl_dependencies')) {
-		def deps = project.osl_dependencies.split(',')
+		def deps = findDependencies(project)
 
-		for (dep : deps) {
-			def libraryName = dep.substring(0, dep.indexOf(':'))
-			def moduleName = findModuleDependency(project, libraryName)
+		for (libraryName : deps.keySet()) {
+			def moduleName = findModuleDependencyProject(project, libraryName)
 
 			if (moduleName != null) {
 				libraries.add(":libraries:${libraryName}")
@@ -552,7 +572,7 @@ def findModuleDependencies(project, libraries, modules) {
 	}
 }
 
-def findModuleDependency(project, libraryName) {
+def findModuleDependencyProject(project, libraryName) {
 	def library = project.project(":libraries:${libraryName}")
 	def modules = library.getSubprojects()
 

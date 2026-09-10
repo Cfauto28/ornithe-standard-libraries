@@ -9,3 +9,5 @@ transitive-accessible	method	ext/block/ExtBlock	setTicksRandomly	(Z)V
 transitive-accessible	method	ext/block/ExtBlock	setName	(Ljava/lang/String;)Lext/block/ExtBlock;
 
 transitive-inject-interface	ext/block/ExtBlock	net/ornithemc/osl/blocks/impl/block/BlockExtensionImpl
+
+mutable	field	ext/block/ExtBlock	id	I

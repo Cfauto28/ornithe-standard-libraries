@@ -14,8 +14,8 @@ package net.ornithemc.osl.core.api.util;
  * The identifier is a unique name for content within a namespace. It should be descriptive
  * to avoid naming conflicts with other content. The preferred format is snake_case.
  * <p>
- * Namespaces may only contain alphanumeric characters [a-zA-Z0-9] and special characters
- * [-._]. Identifiers may also contain the special character [/].
+ * Namespaces may only contain alphanumeric characters [a-z0-9] and special characters [-._].
+ * Identifiers may also contain the path separator character [/].
  */
 public interface NamespacedIdentifier {
 
@@ -34,5 +34,15 @@ public interface NamespacedIdentifier {
 	 * @return the identifier of this {@code NamespacedIdentifier}.
 	 */
 	String identifier();
+
+	/**
+	 * @return a copy of this {@code NamespacedIdentifier} with the given prefix.
+	 */
+	NamespacedIdentifier prefixed(String prefix);
+
+	/**
+	 * @return a copy of this {@code NamespacedIdentifier} with the given suffix.
+	 */
+	NamespacedIdentifier suffixed(String suffix);
 
 }

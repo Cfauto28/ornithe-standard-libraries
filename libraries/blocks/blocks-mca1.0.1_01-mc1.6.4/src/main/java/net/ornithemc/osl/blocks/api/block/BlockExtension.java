@@ -2,12 +2,13 @@ package net.ornithemc.osl.blocks.api.block;
 
 import ext.block.ExtBlock;
 
-import net.ornithemc.osl.core.api.registry.DefaultedIdRegistry;
-import net.ornithemc.osl.core.api.registry.SimpleIdRegistry;
+import net.ornithemc.osl.blocks.impl.BlockRegistryImpl;
+import net.ornithemc.osl.registries.api.registry.DefaultedRegistry;
 
 public interface BlockExtension {
 
-	SimpleIdRegistry<ExtBlock> REGISTRY = new DefaultedIdRegistry<>("air");
+	DefaultedRegistry<ExtBlock> REGISTRY = BlockRegistryImpl.REGISTRY;
+	int AUTO_ASSIGN_ID = -172;
 
 	/**
 	 * @return whether this block is air.
