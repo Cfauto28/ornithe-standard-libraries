@@ -1,4 +1,4 @@
-package net.ornithemc.osl.items.impl.mixin.client;
+/*package net.ornithemc.osl.items.impl.mixin.client;
 
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -17,10 +17,11 @@ public class ItemRendererMixin_12w30b {
 		method = "render",
 		at = @At(
 			value = "CONSTANT",
-			args = "intValue=256"
+			args = "intValue=32767"
 		)
 	)
 	private int osl$items$fixBlockIdCheck(int maxBlockId, @Local ItemStack item) {
 		return item.getItem() instanceof BlockItem ? item.id + 1 : 0;
 	}
 }
+*/

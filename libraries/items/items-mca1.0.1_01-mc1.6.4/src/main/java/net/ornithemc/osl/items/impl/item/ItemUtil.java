@@ -1,6 +1,6 @@
 package net.ornithemc.osl.items.impl.item;
 
-import net.minecraft.block.Block;
+import ext.block.ExtBlock;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -17,10 +17,10 @@ public final class ItemUtil {
 	}
 
 	public static int itemId(int block) {
-		return itemId(Block.BY_ID[block]);
+		return itemId(ExtBlock.BY_ID[block]);
 	}
 
-	public static int itemId(Block block) {
+	public static int itemId(ExtBlock block) {
 		Item item = ItemRegistry.getItem(block);
 		return item == null ? 0 : item.id;
 	}

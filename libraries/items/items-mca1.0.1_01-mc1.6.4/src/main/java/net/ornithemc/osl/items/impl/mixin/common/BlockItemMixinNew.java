@@ -3,6 +3,7 @@ package net.ornithemc.osl.items.impl.mixin.common;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 
+import ext.block.ExtBlock;
 import net.minecraft.block.Block;
 import net.minecraft.item.BlockItem;
 
@@ -20,7 +21,7 @@ public class BlockItemMixinNew implements BlockItemAccess {
 	}
 
 	@Override
-	public void osl$items$setBlock(Block block) {
+	public void osl$items$setBlock(ExtBlock block) {
 		this.block = block.id;
 	}
 }

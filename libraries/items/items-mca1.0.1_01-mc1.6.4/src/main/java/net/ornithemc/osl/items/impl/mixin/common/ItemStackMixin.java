@@ -6,6 +6,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
+import ext.block.ExtBlock;
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemStack;
 
@@ -18,12 +19,12 @@ public class ItemStackMixin {
 	private int id;
 
 	@Inject(
-		method = "<init>(Lnet/minecraft/block/Block;I)V",
+		method = "<init>(Lext/block/ExtBlock;I)V",
 		at = @At(
 			value = "TAIL"
 		)
 	)
-	private void osl$items$fixBlockItemId(Block block, int size, CallbackInfo ci) {
+	private void osl$items$fixBlockItemId(ExtBlock block, int size, CallbackInfo ci) {
 		if (ItemUtil.blockItemsInitialized) {
 			this.id = ItemUtil.itemId(block);
 		}

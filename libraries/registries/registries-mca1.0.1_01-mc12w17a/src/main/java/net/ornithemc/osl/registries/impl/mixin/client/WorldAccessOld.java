@@ -10,7 +10,7 @@ import net.minecraft.world.World;
 @Mixin(World.class)
 public interface WorldAccessOld {
 
-	@Accessor("f_14667040")
+	@Accessor("saveDir")
 	File accessSaveDirectory();
 
 }

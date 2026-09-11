@@ -1,6 +1,6 @@
 package net.ornithemc.osl.registries.api.registry;
 
-import net.minecraft.block.Block;
+import ext.block.ExtBlock;
 import net.minecraft.item.Item;
 
 import net.ornithemc.osl.core.api.util.NamespacedIdentifier;
@@ -13,7 +13,7 @@ import net.ornithemc.osl.core.api.util.NamespacedIdentifiers;
  */
 public final class RegistryKeys {
 
-	public static final ResourceKey<Registry<Block>> BLOCK = from("block");
+	public static final ResourceKey<Registry<ExtBlock>> BLOCK = from("block");
 	public static final ResourceKey<Registry<Item>> ITEM = from("item");
 
 	/**

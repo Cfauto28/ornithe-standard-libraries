@@ -1,4 +1,4 @@
-package net.ornithemc.osl.items.impl.mixin.client;
+/*package net.ornithemc.osl.items.impl.mixin.client;
 
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -11,9 +11,10 @@ import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import com.llamalad7.mixinextras.sugar.Share;
 import com.llamalad7.mixinextras.sugar.ref.LocalIntRef;
 
+import ext.block.ExtBlock;
+
 import org.spongepowered.asm.mixin.injection.ModifyVariable;
 
-import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.item.Item;
 
@@ -35,7 +36,7 @@ public class MinecraftMixinMid {
 	private int osl$items$fixBlockItemId(int id, @Share("osl$items$blockId") LocalIntRef blockId) {
 		blockId.set(id);
 
-		Block block = Block.BY_ID[id];
+		ExtBlock block = ExtBlock.BY_ID[id];
 		if (block == null) {
 			return 0;
 		}
@@ -50,7 +51,7 @@ public class MinecraftMixinMid {
 
 	@Definition(
 		id = "BY_ID",
-		field = "Lnet/minecraft/block/Block;BY_ID:[Lnet/minecraft/block/Block;"
+		field = "Lext/block/ExtBlock;BY_ID:[Lext/block/ExtBlock;"
 	)
 	@Expression("BY_ID[?]")
 	@WrapOperation(
@@ -59,7 +60,8 @@ public class MinecraftMixinMid {
 			value = "MIXINEXTRAS:EXPRESSION"
 		)
 	)
-	private Block osl$items$fixBlockCheck1(Block[] BY_ID, int id, Operation<Block> op, @Share("osl$items$blockId") LocalIntRef blockId) {
+	private ExtBlock osl$items$fixBlockCheck1(ExtBlock[] BY_ID, int id, Operation<ExtBlock> op, @Share("osl$items$blockId") LocalIntRef blockId) {
 		return op.call(BY_ID, blockId.get());
 	}
 }
+*/

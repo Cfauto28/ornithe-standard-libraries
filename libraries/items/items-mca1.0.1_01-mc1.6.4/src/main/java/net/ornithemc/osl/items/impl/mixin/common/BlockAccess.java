@@ -3,12 +3,12 @@ package net.ornithemc.osl.items.impl.mixin.common;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.gen.Invoker;
 
-import net.minecraft.block.Block;
+import ext.block.ExtBlock;
 
-@Mixin(Block.class)
+@Mixin(ExtBlock.class)
 public interface BlockAccess {
 
-	@Invoker("m_79262324")
+	@Invoker("getSprite")
 	int osl$items$getSprite(int face);
 
 }

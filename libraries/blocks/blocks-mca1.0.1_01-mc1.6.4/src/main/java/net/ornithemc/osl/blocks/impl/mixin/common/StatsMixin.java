@@ -1,4 +1,4 @@
-package net.ornithemc.osl.blocks.impl.mixin.common;
+/*package net.ornithemc.osl.blocks.impl.mixin.common;
 
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
@@ -33,3 +33,4 @@ public class StatsMixin {
 		SyncedRegistries.registerMapper(RegistryKeys.BLOCK, NamespacedIdentifiers.from("stats/mined"), ArrayMapper.of(() -> BLOCKS_MINED, a -> BLOCKS_MINED = a));
 	}
 }
+*/

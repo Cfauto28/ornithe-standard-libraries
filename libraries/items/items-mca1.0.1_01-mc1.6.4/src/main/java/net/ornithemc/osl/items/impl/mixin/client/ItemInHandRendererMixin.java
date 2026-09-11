@@ -9,7 +9,7 @@ import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import com.llamalad7.mixinextras.sugar.Local;
 
-import net.minecraft.block.Block;
+import ext.block.ExtBlock;
 import net.minecraft.client.render.ItemInHandRenderer;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.ItemStack;
@@ -21,7 +21,7 @@ public class ItemInHandRendererMixin {
 
 	@Definition(
 		id = "BY_ID",
-		field = "Lnet/minecraft/block/Block;BY_ID:[Lnet/minecraft/block/Block;"
+		field = "Lext/block/ExtBlock;BY_ID:[Lext/block/ExtBlock;"
 	)
 	@Expression("BY_ID[?]")
 	@WrapOperation(
@@ -30,7 +30,7 @@ public class ItemInHandRendererMixin {
 			value = "MIXINEXTRAS:EXPRESSION"
 		)
 	)
-	private Block osl$items$fixBlockCheck(Block[] BY_ID, int id, Operation<Block> op, @Local ItemStack item) {
+	private ExtBlock osl$items$fixBlockCheck(ExtBlock[] BY_ID, int id, Operation<ExtBlock> op, @Local ItemStack item) {
 		return item.getItem() instanceof BlockItem ? op.call(BY_ID, ((BlockItemAccess) item.getItem()).osl$items$getBlock()) : null;
 	}
 }

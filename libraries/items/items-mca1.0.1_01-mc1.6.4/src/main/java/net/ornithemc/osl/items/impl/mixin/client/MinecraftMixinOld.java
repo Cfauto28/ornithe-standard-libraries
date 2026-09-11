@@ -1,11 +1,11 @@
-package net.ornithemc.osl.items.impl.mixin.client;
+/*package net.ornithemc.osl.items.impl.mixin.client;
 
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.At.Shift;
 import org.spongepowered.asm.mixin.injection.ModifyVariable;
 
-import net.minecraft.block.Block;
+import ext.block.ExtBlock;
 import net.minecraft.client.Minecraft;
 import net.minecraft.item.Item;
 
@@ -25,7 +25,7 @@ public class MinecraftMixinOld {
 		)
 	)
 	private int osl$items$fixBlockItemId(int id) {
-		Block block = Block.BY_ID[id];
+		ExtBlock block = ExtBlock.BY_ID[id];
 		if (block == null) {
 			return 0;
 		}
@@ -38,3 +38,4 @@ public class MinecraftMixinOld {
 		return item.id;
 	}
 }
+*/

@@ -1,4 +1,4 @@
-package net.ornithemc.osl.items.impl.mixin.client;
+/*package net.ornithemc.osl.items.impl.mixin.client;
 
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -33,7 +33,7 @@ public class ItemRendererMixin_b1_5_12w32a {
 
 	@Definition(
 		id = "BY_ID",
-		field = "Lnet/minecraft/block/Block;BY_ID:[Lnet/minecraft/block/Block;"
+		field = "Lext/block/ExtBlock;BY_ID:[Lext/block/ExtBlock;"
 	)
 	@Expression("BY_ID[?]")
 	@WrapOperation(
@@ -46,3 +46,4 @@ public class ItemRendererMixin_b1_5_12w32a {
 		return Item.BY_ID[item] instanceof BlockItem ? op.call(BY_ID, ((BlockItemAccess) Item.BY_ID[item]).osl$items$getBlock()) : null;
 	}
 }
+*/

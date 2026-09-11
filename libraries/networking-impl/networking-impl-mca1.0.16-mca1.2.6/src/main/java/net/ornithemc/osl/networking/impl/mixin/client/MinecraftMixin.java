@@ -25,7 +25,7 @@ public class MinecraftMixin {
 	private ClientPlayerEntity player;
 
 	@Inject(
-		method = "setWorld(Lnet/minecraft/world/World;Ljava/lang/String;)V",
+		method = "method_1_530(Lnet/minecraft/world/World;Ljava/lang/String;)V",
 		at = @At(
 			value = "HEAD"
 		)

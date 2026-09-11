@@ -1,4 +1,4 @@
-package net.ornithemc.osl.items.impl.mixin.client;
+/*package net.ornithemc.osl.items.impl.mixin.client;
 
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -6,11 +6,11 @@ import org.spongepowered.asm.mixin.injection.At;
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 
-import net.minecraft.block.SlabBlock;
+import ext.block.ExtStoneSlabBlock;
 
 import net.ornithemc.osl.items.impl.item.ItemUtil;
 
-@Mixin(SlabBlock.class)
+@Mixin(ExtStoneSlabBlock.class)
 public class SlabBlockMixin {
 
 	@WrapOperation(
@@ -21,7 +21,8 @@ public class SlabBlockMixin {
 			ordinal= 1
 		)
 	)
-	private int osl$items$fixBlockItem(SlabBlock block, Operation<Integer> op) {
+	private int osl$items$fixBlockItem(ExtStoneSlabBlock block, Operation<Integer> op) {
 		return ItemUtil.itemId(block);
 	}
 }
+*/

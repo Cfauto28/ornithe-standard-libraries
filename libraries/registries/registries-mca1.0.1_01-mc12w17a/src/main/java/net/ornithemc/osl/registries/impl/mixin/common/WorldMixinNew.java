@@ -1,4 +1,4 @@
-package net.ornithemc.osl.registries.impl.mixin.common;
+/*package net.ornithemc.osl.registries.impl.mixin.common;
 
 import java.io.File;
 import java.io.IOException;
@@ -17,7 +17,7 @@ import net.ornithemc.osl.registries.impl.registry.sync.RegistryMappingStorage;
 public class WorldMixinNew {
 
 	@Shadow
-	private File f_14667040; // saveDir
+	private File saveDir; // saveDir
 
 	@Inject(
 		method = "<init>(Ljava/io/File;Ljava/lang/String;JLnet/minecraft/unmapped/C_90532916;)V",
@@ -28,9 +28,10 @@ public class WorldMixinNew {
 	)
 	private void osl$registries$loadRegistryMappings(CallbackInfo ci) {
 		try {
-			RegistryMappingStorage.loadRegistryMappings(this.f_14667040);
+			RegistryMappingStorage.loadRegistryMappings(this.saveDir);
 		} catch (IOException e) {
 			throw new RuntimeException("Exception initializing level", e);
 		}
 	}
 }
+*/

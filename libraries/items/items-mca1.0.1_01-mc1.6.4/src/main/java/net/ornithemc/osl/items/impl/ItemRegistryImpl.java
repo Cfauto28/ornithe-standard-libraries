@@ -52,7 +52,7 @@ public final class ItemRegistryImpl {
 		return REGISTRY.get(key);
 	}
 
-	public static Item getItem(Block block) {
+	public static Item getItem(ExtBlock block) {
 		return BLOCK_ITEMS.get(block);
 	}
 

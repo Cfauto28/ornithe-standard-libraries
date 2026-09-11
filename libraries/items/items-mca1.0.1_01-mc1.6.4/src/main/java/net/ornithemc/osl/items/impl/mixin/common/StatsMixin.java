@@ -1,4 +1,4 @@
-package net.ornithemc.osl.items.impl.mixin.common;
+/*package net.ornithemc.osl.items.impl.mixin.common;
 
 import java.util.List;
 
@@ -45,3 +45,4 @@ public class StatsMixin {
 		SyncedRegistries.registerMapper(RegistryKeys.ITEM, NamespacedIdentifiers.from("stats/broken"), ArrayMapper.of(() -> ITEMS_BROKEN, a -> ITEMS_BROKEN = a));
 	}
 }
+*/

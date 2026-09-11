@@ -10,7 +10,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-import net.minecraft.block.Block;
+import ext.block.ExtBlock;
 import net.minecraft.block.material.Material;
 
 import net.ornithemc.osl.blocks.api.block.BlockExtension;
@@ -20,11 +20,11 @@ import net.ornithemc.osl.registries.api.registry.SyncedRegistries;
 import net.ornithemc.osl.registries.api.registry.sync.BooleanArrayMapper;
 import net.ornithemc.osl.registries.api.registry.sync.DynamicBooleanArray;
 
-@Mixin(Block.class)
+@Mixin(ExtBlock.class)
 public abstract class BlockMixin_a1_1_0_12w06a implements BlockExtension {
 
 	@Shadow @Final @Mutable
-	private static boolean[] f_72646756;
+	private static boolean[] HAS_BLOCK_ENTITY;
 
 	@Inject(
 		method = "<clinit>",
@@ -33,14 +33,14 @@ public abstract class BlockMixin_a1_1_0_12w06a implements BlockExtension {
 		)
 	)
 	private static void osl$blocks$registerArrayMappers(CallbackInfo ci) {
-		SyncedRegistries.registerMapper(RegistryKeys.BLOCK, NamespacedIdentifiers.from("block/has_block_entity"), BooleanArrayMapper.of(() -> f_72646756, a -> f_72646756 = a));
+		SyncedRegistries.registerMapper(RegistryKeys.BLOCK, NamespacedIdentifiers.from("block/has_block_entity"), BooleanArrayMapper.of(() -> HAS_BLOCK_ENTITY, a -> HAS_BLOCK_ENTITY = a));
 	}
 
 	@Inject(
 		method = "<init>",
 		at = @At(
 			value = "FIELD",
-			target = "Lnet/minecraft/block/Block;BY_ID:[Lnet/minecraft/block/Block;",
+			target = "Lext/block/ExtBlock;BY_ID:[Lext/block/ExtBlock;",
 			opcode = Opcodes.GETSTATIC,
 			args = "array=set"
 		)
@@ -48,6 +48,6 @@ public abstract class BlockMixin_a1_1_0_12w06a implements BlockExtension {
 	private void osl$blocks$growArrays(int id, Material material, CallbackInfo ci) {
 		int capacity = id + 1;
 
-		f_72646756 = DynamicBooleanArray.grow(f_72646756, capacity);
+		HAS_BLOCK_ENTITY = DynamicBooleanArray.grow(HAS_BLOCK_ENTITY, capacity);
 	}
 }

@@ -50,7 +50,7 @@ public final class BlockRegistryImpl {
 		return REGISTRY.identifierSet();
 	}
 
-	public static Set<ResourceKey<Block>> keySet() {
+	public static Set<ResourceKey<ExtBlock>> keySet() {
 		return REGISTRY.keySet();
 	}
 
@@ -100,7 +100,7 @@ public final class BlockRegistryImpl {
 	}
 
 	public static void registerUnknownBlocks() {
-		for (Block block : Block.BY_ID) {
+		for (ExtBlock block : ExtBlock.BY_ID) {
 			if (block != null && block.id != 0 && REGISTRY.getIdentifier(block) == REGISTRY.getDefaultIdentifier()) {
 				NamespacedIdentifier identifier = NamespacedIdentifiers.from("osl", "block_" + block.id);
 

@@ -1,4 +1,4 @@
-package net.ornithemc.osl.registries.impl.mixin.common;
+/*package net.ornithemc.osl.registries.impl.mixin.common;
 
 import java.io.File;
 import java.io.IOException;
@@ -27,3 +27,4 @@ public class AlphaWorldStorageMixin implements WorldStorageAccess {
 		RegistryMappingStorage.saveRegistryMappings(this.getDirectory());
 	}
 }
+*/

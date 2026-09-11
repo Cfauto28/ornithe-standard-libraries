@@ -23,7 +23,7 @@ import net.ornithemc.osl.items.impl.VanillaItems;
 
 @Mixin(
 	value = ExtBlock.class,
-	priority = 1001 // make sure blocks mixin is applied first 
+	priority = 1010 // make sure blocks mixin is applied first 
 )
 public class BlockMixin {
 

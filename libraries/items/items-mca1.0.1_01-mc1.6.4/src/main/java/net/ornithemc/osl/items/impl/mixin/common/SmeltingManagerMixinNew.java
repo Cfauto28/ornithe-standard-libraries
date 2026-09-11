@@ -1,4 +1,4 @@
-package net.ornithemc.osl.items.impl.mixin.common;
+/*package net.ornithemc.osl.items.impl.mixin.common;
 
 import java.util.Map;
 
@@ -31,3 +31,4 @@ public class SmeltingManagerMixinNew {
 		SyncedRegistries.registerMapper(RegistryKeys.ITEM, NamespacedIdentifiers.from("smelting/experience"), IntegerMapMapper.of(this.xpResults));
 	}
 }
+*/

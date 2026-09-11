@@ -1,4 +1,4 @@
-package net.ornithemc.osl.items.impl.mixin.client;
+/*package net.ornithemc.osl.items.impl.mixin.client;
 
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -25,3 +25,4 @@ public class CustomizeFlatWorldScreen_LayerListWidgetMixin {
 		return ItemUtil.itemId(layer.getBlock());
 	}
 }
+*/

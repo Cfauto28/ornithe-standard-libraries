@@ -9,7 +9,7 @@ import com.llamalad7.mixinextras.expression.Expression;
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 
-import net.minecraft.block.Block;
+import ext.block.ExtBlock;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 
@@ -24,7 +24,7 @@ public class BlockItemMixinOld implements BlockItemAccess {
 
 	@Definition(
 		id = "BY_ID",
-		field = "Lnet/minecraft/block/Block;BY_ID:[Lnet/minecraft/block/Block;"
+		field = "Lext/block/ExtBlock;BY_ID:[Lext/block/ExtBlock;"
 	)
 	@Expression("BY_ID[?]")
 	@WrapOperation(
@@ -33,7 +33,7 @@ public class BlockItemMixinOld implements BlockItemAccess {
 			value = "MIXINEXTRAS:EXPRESSION"
 		)
 	)
-	private Block osl$items$fixItemBlock(Block[] BY_ID, int id, Operation<Block> op) {
+	private ExtBlock osl$items$fixItemBlock(ExtBlock[] BY_ID, int id, Operation<ExtBlock> op) {
 		if (id - VanillaItems.ITEM_ID_OFFSET == Item.AUTO_ASSIGN_ID) {
 			id = 1; // doesn't matter what this is, so long as the block exists
 		}
@@ -47,7 +47,7 @@ public class BlockItemMixinOld implements BlockItemAccess {
 	}
 
 	@Override
-	public void osl$items$setBlock(Block block) {
+	public void osl$items$setBlock(ExtBlock block) {
 		this.block = block.id;
 		((ItemAccess) this).osl$items$setSprite(((BlockAccess) block).osl$items$getSprite(2));
 	}

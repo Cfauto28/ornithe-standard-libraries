@@ -8,7 +8,7 @@ import net.minecraft.item.Item;
 @Mixin(Item.class)
 public interface ItemAccess {
 
-	@Invoker("m_03402388")
+	@Invoker("setSprite")
 	Item osl$items$setSprite(int sprite);
 
 }

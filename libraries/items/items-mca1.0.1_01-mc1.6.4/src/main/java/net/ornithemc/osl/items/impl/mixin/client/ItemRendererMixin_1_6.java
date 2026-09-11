@@ -1,4 +1,4 @@
-package net.ornithemc.osl.items.impl.mixin.client;
+/*package net.ornithemc.osl.items.impl.mixin.client;
 
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -32,3 +32,4 @@ public class ItemRendererMixin_1_6 {
 		return item.getItem() instanceof BlockItem ? op.call((Object) BY_ID) : 0;
 	}
 }
+*/

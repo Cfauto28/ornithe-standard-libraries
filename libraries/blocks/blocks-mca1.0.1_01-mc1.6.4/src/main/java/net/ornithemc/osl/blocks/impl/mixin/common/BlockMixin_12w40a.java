@@ -1,4 +1,4 @@
-package net.ornithemc.osl.blocks.impl.mixin.common;
+/*package net.ornithemc.osl.blocks.impl.mixin.common;
 
 import org.objectweb.asm.Opcodes;
 
@@ -51,3 +51,4 @@ public abstract class BlockMixin_12w40a implements BlockExtension {
 		USES_NEIGHBOR_LIGHT = DynamicBooleanArray.grow(USES_NEIGHBOR_LIGHT, capacity);
 	}
 }
+*/

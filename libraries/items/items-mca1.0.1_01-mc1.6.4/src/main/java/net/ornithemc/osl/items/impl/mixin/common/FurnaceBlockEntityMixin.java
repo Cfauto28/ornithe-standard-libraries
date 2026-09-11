@@ -10,7 +10,7 @@ import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import com.llamalad7.mixinextras.sugar.Local;
 
-import net.minecraft.block.Block;
+import ext.block.ExtBlock;
 import net.minecraft.block.entity.FurnaceBlockEntity;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.ItemStack;
@@ -24,7 +24,7 @@ public class FurnaceBlockEntityMixin {
 		method = "getFuelTime",
 		at = @At(
 			value = "CONSTANT",
-			args = "intValue=256"
+			args = "intValue=32767"
 		)
 	)
 	private static int osl$items$fixBlockIdCheck(int maxBlockId, @Local ItemStack item) {
@@ -33,7 +33,7 @@ public class FurnaceBlockEntityMixin {
 
 	@Definition(
 		id = "BY_ID",
-		field = "Lnet/minecraft/block/Block;BY_ID:[Lnet/minecraft/block/Block;"
+		field = "Lext/block/ExtBlock;BY_ID:[Lext/block/ExtBlock;"
 	)
 	@Expression("BY_ID[?]")
 	@WrapOperation(
@@ -42,7 +42,7 @@ public class FurnaceBlockEntityMixin {
 			value = "MIXINEXTRAS:EXPRESSION"
 		)
 	)
-	private static Block osl$items$fixBlockCheck(Block[] BY_ID, int id, Operation<Block> op, @Local ItemStack item) {
+	private static ExtBlock osl$items$fixBlockCheck(ExtBlock[] BY_ID, int id, Operation<ExtBlock> op, @Local ItemStack item) {
 		return item.getItem() instanceof BlockItem ? op.call(BY_ID, ((BlockItemAccess) item.getItem()).osl$items$getBlock()) : null;
 	}
 }

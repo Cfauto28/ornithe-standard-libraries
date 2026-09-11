@@ -1,4 +1,4 @@
-package net.ornithemc.osl.items.impl.item;
+/*package net.ornithemc.osl.items.impl.item;
 
 import java.util.Collections;
 import java.util.IdentityHashMap;
@@ -71,3 +71,4 @@ public class ItemStatsMapper implements IdMapper {
 		}
 	}
 }
+*/

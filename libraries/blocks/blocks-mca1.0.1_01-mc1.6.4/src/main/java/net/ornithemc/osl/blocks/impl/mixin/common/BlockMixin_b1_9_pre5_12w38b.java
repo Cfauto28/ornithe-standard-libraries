@@ -1,4 +1,4 @@
-package net.ornithemc.osl.blocks.impl.mixin.common;
+/*package net.ornithemc.osl.blocks.impl.mixin.common;
 
 import org.objectweb.asm.Opcodes;
 
@@ -51,3 +51,4 @@ public abstract class BlockMixin_b1_9_pre5_12w38b implements BlockExtension {
 		f_81217054 = DynamicBooleanArray.grow(f_81217054, capacity);
 	}
 }
+*/

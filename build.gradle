@@ -27,6 +27,8 @@ plugins {
 	id 'fabric-loom' version '1.17.17'
 }
 
+apply plugin: 'ploceus'
+
 import net.fabricmc.loader.api.SemanticVersion
 import net.fabricmc.loader.impl.game.minecraft.McVersionLookup
 
@@ -38,6 +40,11 @@ group = "${project.mod_maven_group}"
 
 ploceus {
 	setIntermediaryGeneration(2)
+	disableLibraryUpgrades()
+}
+
+loom {
+	clientOnlyMinecraftJar()
 }
 
 repositories {
@@ -47,14 +54,6 @@ repositories {
 	}
 }
 
-	project.ploceus {
-		setIntermediaryGeneration(2)
-		disableLibraryUpgrades()
-	}
-
-	project.loom {
-		clientOnlyMinecraftJar()
-	}
 /*dependencies {
 	// dummy mc dependency to keep loom happy
 	minecraft "com.mojang:minecraft:${project.minecraft_version}"
@@ -324,13 +323,13 @@ def setUpModule(project) {
 		minecraft "com.mojang:minecraft:${project.minecraft_version}"
 		modImplementation "net.fabricmc:fabric-loader:${project.rootProject.loader_version}"
 		
-		include(implementation("it.unimi.dsi:fastutil:8.5.11"))
-		include(implementation("org.apache.commons:commons-lang3:3.14.0"))
-		include(implementation("io.netty:netty-all:4.1.94.Final"))
-		include(implementation('org.apache.logging.log4j:log4j-api:2.23.1'))
-		include(implementation('org.apache.logging.log4j:log4j-core:2.23.1'))
-		include(implementation("com.google.code.gson:gson:2.10.1"))
-		include(implementation("com.google.guava:guava:33.2.1-jre"))
+		implementation("it.unimi.dsi:fastutil:8.5.11")
+		implementation("org.apache.commons:commons-lang3:3.14.0")
+		implementation("io.netty:netty-all:4.1.94.Final")
+		implementation('org.apache.logging.log4j:log4j-api:2.23.1')
+		implementation('org.apache.logging.log4j:log4j-core:2.23.1')
+		implementation("com.google.code.gson:gson:2.10.1")
+		implementation("com.google.guava:guava:33.2.1-jre")
 
 		if (project.hasProperty('raven_build')) {
 			exceptions project.ploceus.raven(project.raven_build)

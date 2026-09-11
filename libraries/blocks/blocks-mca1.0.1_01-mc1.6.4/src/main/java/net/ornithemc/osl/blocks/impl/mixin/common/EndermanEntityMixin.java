@@ -1,4 +1,4 @@
-package net.ornithemc.osl.blocks.impl.mixin.common;
+/*package net.ornithemc.osl.blocks.impl.mixin.common;
 
 import org.objectweb.asm.Opcodes;
 
@@ -35,3 +35,4 @@ public class EndermanEntityMixin {
 		HOLDABLE_BLOCKS = DynamicBooleanArray.grow(HOLDABLE_BLOCKS, capacity);
 	}
 }
+*/

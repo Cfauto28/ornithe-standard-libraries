@@ -89,21 +89,21 @@ public final class VanillaBlocks {
 		"diamond_ore",
 		"diamond_block",
 		"crafting_table",
-		"wheat",
+		"wheat_block",
 
 		"farmland",
 		"furnace",
 		"lit_furnace",
 		"standing_sign",
-		"wooden_door",
-		"ladder",
-		"rail",
+		"wooden_door_block",
+		"ladder_block",
+		"rail_block",
 		"stone_stairs",
 		"wall_sign",
 		"lever",
 
 		"stone_pressure_plate",
-		"iron_door",
+		"iron_door_block",
 		"wooden_pressure_plate",
 		"redstone_ore",
 		"lit_redstone_ore",
@@ -113,10 +113,10 @@ public final class VanillaBlocks {
 		"snow_layer",
 		"ice",
 
-		"snow",
+		"snow_block",
 		"cactus",
-		"clay",
-		"reeds",
+		"clay_block",
+		"reeds_block",
 		"jukebox",
 		"fence",
 		
@@ -297,7 +297,7 @@ public final class VanillaBlocks {
 		"Frigid_Leaves"
 	};
 
-	public static final int MAX_ID = 255;
+	public static final int MAX_ID = 32766;
 
 	static void init() {
 		// Air block added by OSL

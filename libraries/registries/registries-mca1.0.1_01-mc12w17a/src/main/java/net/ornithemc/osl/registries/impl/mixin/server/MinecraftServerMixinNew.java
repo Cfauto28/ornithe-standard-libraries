@@ -1,4 +1,4 @@
-package net.ornithemc.osl.registries.impl.mixin.server;
+/*package net.ornithemc.osl.registries.impl.mixin.server;
 
 import java.io.IOException;
 
@@ -59,3 +59,4 @@ public class MinecraftServerMixinNew {
 		}
 	}
 }
+*/

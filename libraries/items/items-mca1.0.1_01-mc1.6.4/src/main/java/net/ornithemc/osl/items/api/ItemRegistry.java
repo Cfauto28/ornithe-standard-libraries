@@ -60,7 +60,7 @@ public final class ItemRegistry {
 	/**
 	 * @return the item mapped to the given block.
 	 */
-	public static Item getItem(Block block) {
+	public static Item getItem(ExtBlock block) {
 		return ItemRegistryImpl.getItem(block);
 	}
 

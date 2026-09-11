@@ -1,4 +1,4 @@
-package net.ornithemc.osl.items.impl.mixin.client;
+/*package net.ornithemc.osl.items.impl.mixin.client;
 
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -10,7 +10,7 @@ import com.llamalad7.mixinextras.sugar.Local;
 import com.llamalad7.mixinextras.sugar.Share;
 import com.llamalad7.mixinextras.sugar.ref.LocalRef;
 
-import net.minecraft.block.Block;
+import ext.block.ExtBlock;
 import net.minecraft.client.Minecraft;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
@@ -27,7 +27,7 @@ public class MinecraftMixinNewNew {
 			target = "Lnet/minecraft/item/Item;hasCustomData()Z"
 		)
 	)
-	private void osl$items$captureBlock(CallbackInfo ci, @Local Block block, @Share("osl$items$block") LocalRef<Block> capture) {
+	private void osl$items$captureBlock(CallbackInfo ci, @Local ExtBlock block, @Share("osl$items$block") LocalRef<ExtBlock> capture) {
 		capture.set(block);
 	}
 
@@ -40,7 +40,7 @@ public class MinecraftMixinNewNew {
 			ordinal = 2
 		)
 	)
-	private int osl$items$fixBlockId(int blockId, @Share("osl$items$block") LocalRef<Block> block, @Local(index = 2) int item) {
+	private int osl$items$fixBlockId(int blockId, @Share("osl$items$block") LocalRef<ExtBlock> block, @Local(index = 2) int item) {
 		if (Item.BY_ID[item] instanceof BlockItem && !block.get().hasPickItemMetadata()) {
 			blockId = ((BlockItemAccess) Item.BY_ID[item]).osl$items$getBlock();
 		}
@@ -48,3 +48,4 @@ public class MinecraftMixinNewNew {
 		return blockId;
 	}
 }
+*/

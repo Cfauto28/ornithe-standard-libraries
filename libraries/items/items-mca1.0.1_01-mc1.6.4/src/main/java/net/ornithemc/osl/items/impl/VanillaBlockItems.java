@@ -64,23 +64,3 @@ public final class VanillaBlockItems {
 		ItemUtil.blockItemsInitialized = true;
 	}
 }
-
-		/*for (Field f : Block.class.getDeclaredFields()) {
-			if (Modifier.isStatic(f.getModifiers()) && Block.class.isAssignableFrom(f.getType())) {
-				try {
-					Block block = (Block) f.get(null);
-					Item item = Item.BY_ID[block.id];
-
-					if (block != Blocks.AIR && item != null) {
-						NamespacedIdentifier identifier = BlockRegistryImpl.getIdentifier(block);
-
-						if (ItemRegistryImpl.getItem(identifier) != null) {
-							// some blocks have both a block item and special item form
-							identifier = identifier.suffixed("_block");
-						}
-
-						ItemRegistryImpl.register(identifier, block, item);
-					}
-				} catch (Throwable t) {
-				}*/
-				

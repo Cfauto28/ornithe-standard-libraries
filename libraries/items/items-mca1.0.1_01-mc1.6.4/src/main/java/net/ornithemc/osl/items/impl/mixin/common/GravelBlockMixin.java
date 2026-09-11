@@ -6,21 +6,22 @@ import org.spongepowered.asm.mixin.injection.At;
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 
+import ext.block.ExtGravelBlock;
 import net.minecraft.block.GravelBlock;
 
 import net.ornithemc.osl.items.impl.item.ItemUtil;
 
-@Mixin(GravelBlock.class)
+@Mixin(ExtGravelBlock.class)
 public class GravelBlockMixin {
 
 	@WrapOperation(
 		method = "getDropItem",
 		at = @At(
 			value = "FIELD",
-			target = "Lnet/minecraft/block/GravelBlock;id:I"
+			target = "Lext/block/ExtGravelBlock;id:I"
 		)
 	)
-	private int osl$items$fixBlockItem(GravelBlock block, Operation<Integer> op) {
+	private int osl$items$fixBlockItem(ExtGravelBlock block, Operation<Integer> op) {
 		return ItemUtil.itemId(block);
 	}
 }

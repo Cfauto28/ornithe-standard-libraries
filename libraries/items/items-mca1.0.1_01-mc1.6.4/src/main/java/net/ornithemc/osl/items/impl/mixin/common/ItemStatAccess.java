@@ -1,4 +1,4 @@
-package net.ornithemc.osl.items.impl.mixin.common;
+/*package net.ornithemc.osl.items.impl.mixin.common;
 
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Mutable;
@@ -17,3 +17,4 @@ public interface ItemStatAccess {
 	void setItem(int item);
 
 }
+*/

@@ -1,4 +1,4 @@
-package net.ornithemc.osl.items.impl.mixin.common;
+/*package net.ornithemc.osl.items.impl.mixin.common;
 
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -36,3 +36,4 @@ public class ItemMixin_b1_0_1_3 {
 		}
 	}
 }
+*/

@@ -1,4 +1,4 @@
-package net.ornithemc.osl.items.impl.mixin.common;
+/*package net.ornithemc.osl.items.impl.mixin.common;
 
 import java.util.List;
 
@@ -32,3 +32,4 @@ public class AchievementsMixin {
 		SyncedRegistries.registerMapper(RegistryKeys.ITEM, NamespacedIdentifiers.from("achievements/icon"), AchievementsIconMapper.of(ALL));
 	}
 }
+*/

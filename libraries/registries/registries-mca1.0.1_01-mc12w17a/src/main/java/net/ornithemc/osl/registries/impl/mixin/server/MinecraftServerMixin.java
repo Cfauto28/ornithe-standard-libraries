@@ -1,4 +1,4 @@
-package net.ornithemc.osl.registries.impl.mixin.server;
+/*package net.ornithemc.osl.registries.impl.mixin.server;
 
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -25,3 +25,4 @@ public class MinecraftServerMixin {
 		Bootstrap.init();
 	}
 }
+*/

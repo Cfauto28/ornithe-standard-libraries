@@ -1,4 +1,4 @@
-package net.ornithemc.osl.core.impl.util;
+/*package net.ornithemc.osl.core.impl.util;
 
 import net.minecraft.client.resource.Identifier;
 
@@ -26,3 +26,4 @@ public interface IdentifierExtensionImpl extends NamespacedIdentifier {
 		throw new AbstractMethodError();
 	}
 }
+*/

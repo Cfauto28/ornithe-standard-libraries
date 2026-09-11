@@ -14,11 +14,8 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import ext.block.ExtBlock;
 import net.minecraft.block.material.Material;
-import net.minecraft.entity.living.mob.monster.EndermanEntity;
-
 import net.ornithemc.osl.blocks.api.block.BlockExtension;
 import net.ornithemc.osl.blocks.impl.BlockRegistryImpl;
-import net.ornithemc.osl.blocks.impl.BlocksMixinPlugin;
 import net.ornithemc.osl.blocks.impl.VanillaBlocks;
 import net.ornithemc.osl.blocks.impl.block.BlockPostInit;
 import net.ornithemc.osl.core.api.util.NamespacedIdentifiers;
@@ -32,13 +29,13 @@ import net.ornithemc.osl.registries.api.registry.sync.DynamicBooleanArray;
 import net.ornithemc.osl.registries.api.registry.sync.DynamicIntArray;
 import net.ornithemc.osl.registries.api.registry.sync.IntArrayMapper;
 
-@Mixin(Block.class)
+@Mixin(ExtBlock.class)
 public abstract class BlockMixin implements BlockExtension {
 
 	@Shadow @Final @Mutable
 	private static ExtBlock[] BY_ID;
 	@Shadow @Final @Mutable
-	private static boolean[] IS_SOLID_RENDER;
+	private static boolean[] IS_SOLID;
 	@Shadow @Final @Mutable
 	private static int[] OPACITIES;
 	@Shadow @Final @Mutable
@@ -85,19 +82,15 @@ public abstract class BlockMixin implements BlockExtension {
 
 		SyncedRegistries.registerMapper(RegistryKeys.BLOCK, NamespacedIdentifiers.from("block/by_id"), ArrayMapper.of(() -> BY_ID, a -> BY_ID = a));
 		if (MinecraftVersion.resolve().compareTo("b1.5_02") <= 0) {
-			SyncedRegistries.registerMapper(RegistryKeys.BLOCK, NamespacedIdentifiers.from("block/is_solid"), BooleanArrayMapper.of(() -> IS_SOLID_RENDER, a -> IS_SOLID_RENDER = a));
+			SyncedRegistries.registerMapper(RegistryKeys.BLOCK, NamespacedIdentifiers.from("block/is_solid"), BooleanArrayMapper.of(() -> IS_SOLID, a -> IS_SOLID = a));
 		} else {
-			SyncedRegistries.registerMapper(RegistryKeys.BLOCK, NamespacedIdentifiers.from("block/is_solid_render"), BooleanArrayMapper.of(() -> IS_SOLID_RENDER, a -> IS_SOLID_RENDER = a));
+			SyncedRegistries.registerMapper(RegistryKeys.BLOCK, NamespacedIdentifiers.from("block/is_solid_render"), BooleanArrayMapper.of(() -> IS_SOLID, a -> IS_SOLID = a));
 		}
 		SyncedRegistries.registerMapper(RegistryKeys.BLOCK, NamespacedIdentifiers.from("block/opacity"), IntArrayMapper.of(() -> OPACITIES, a -> OPACITIES = a));
 		SyncedRegistries.registerMapper(RegistryKeys.BLOCK, NamespacedIdentifiers.from("block/is_translucent"), BooleanArrayMapper.of(() -> IS_TRANSLUCENT, a -> IS_TRANSLUCENT = a));
 		SyncedRegistries.registerMapper(RegistryKeys.BLOCK, NamespacedIdentifiers.from("block/light"), IntArrayMapper.of(() -> LIGHT, a -> LIGHT = a));
 
-		if (MinecraftVersion.resolve().compareTo("b1.8") >= 0) {
-			SyncedRegistries.registerMapper(RegistryKeys.BLOCK, NamespacedIdentifiers.from("block/enderman_holdable"), BooleanArrayMapper.of(() -> EndermanEntity.HOLDABLE_BLOCKS, a -> EndermanEntity.HOLDABLE_BLOCKS = a));
-		}
-
-		for (Block block : BY_ID) {
+		for (ExtBlock block : BY_ID) {
 			if (block instanceof BlockPostInit) {
 				((BlockPostInit) block).osl$blocks$postInit();
 			}
@@ -116,11 +109,11 @@ public abstract class BlockMixin implements BlockExtension {
 	)
 	private int osl$blocks$handleAutoAssignId(int id) {
 		if (id == AUTO_ASSIGN_ID) {
-			if (!BlocksMixinPlugin.BLOCK_IDS_BEYOND_255_SUPPORTED) {
+			/*if (!BlocksMixinPlugin.BLOCK_IDS_BEYOND_255_SUPPORTED) {
 				throw new IllegalStateException("Automatic block ID assignment is not supported at this time!"
 						+ " Block IDs should be limited to the range 0-255"
 						+ " unless the save format and packet format have been modified to support IDs beyond 255.");
-			}
+			}*/
 
 			// the Block[] array must contain all blocks so this should
 			// give us a valid ID for the Block registry to use.
@@ -139,7 +132,7 @@ public abstract class BlockMixin implements BlockExtension {
 		method = "<init>",
 		at = @At(
 			value = "FIELD",
-			target = "Lnet/minecraft/block/Block;BY_ID:[Lnet/minecraft/block/Block;",
+			target = "Lext/block/ExtBlock;BY_ID:[Lext/block/ExtBlock;",
 			opcode = Opcodes.GETSTATIC,
 			args = "array=set"
 		)
@@ -148,7 +141,7 @@ public abstract class BlockMixin implements BlockExtension {
 		int capacity = id + 1;
 
 		BY_ID = DynamicArray.grow(BY_ID, capacity);
-		IS_SOLID_RENDER = DynamicBooleanArray.grow(IS_SOLID_RENDER, capacity);
+		IS_SOLID = DynamicBooleanArray.grow(IS_SOLID, capacity);
 		OPACITIES = DynamicIntArray.grow(OPACITIES, capacity);
 		IS_TRANSLUCENT = DynamicBooleanArray.grow(IS_TRANSLUCENT, capacity);
 		LIGHT = DynamicIntArray.grow(LIGHT, capacity);
@@ -156,6 +149,6 @@ public abstract class BlockMixin implements BlockExtension {
 
 	@Override
 	public String toString() {
-		return "Block{" + BlockRegistryImpl.getIdentifier((Block) (Object) this) + "}";
+		return "Block{" + BlockRegistryImpl.getIdentifier((ExtBlock) (Object) this) + "}";
 	}
 }

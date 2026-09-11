@@ -14,7 +14,7 @@ import net.ornithemc.osl.registries.api.registry.ResourceKey;
  */
 public final class BlockRegistry {
 
-	public static final DefaultedRegistry<Block> REGISTRY = BlockRegistryImpl.REGISTRY;
+	public static final DefaultedRegistry<ExtBlock> REGISTRY = BlockRegistryImpl.REGISTRY;
 
 	/**
 	 * @return the numerical ID assigned to the given block.
@@ -68,7 +68,7 @@ public final class BlockRegistry {
 	/**
 	 * @return a set containing all resource keys in the registry.
 	 */
-	public static Set<ResourceKey<Block>> keySet() {
+	public static Set<ResourceKey<ExtBlock>> keySet() {
 		return BlockRegistryImpl.keySet();
 	}
 
@@ -78,7 +78,7 @@ public final class BlockRegistry {
 	 * @param block      the block to register.
 	 * @return the registered  block.
 	 */
-	public static <T extends Block> T register(NamespacedIdentifier identifier, T block) {
+	public static <T extends ExtBlock> T register(NamespacedIdentifier identifier, T block) {
 		return BlockRegistryImpl.register(identifier, block);
 	}
 
@@ -88,7 +88,7 @@ public final class BlockRegistry {
 	 * @param block the block to register.
 	 * @return the registered  block.
 	 */
-	public static <T extends Block> T register(ResourceKey<Block> key, T block) {
+	public static <T extends ExtBlock> T register(ResourceKey<ExtBlock> key, T block) {
 		return BlockRegistryImpl.register(key, block);
 	}
 
